@@ -1,5 +1,14 @@
 package com.company;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
     String name;
     int amount;
@@ -9,23 +18,9 @@ public class Item {
         this.amount = amount;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public void addAmount(int add) {
         this.amount += add;
     }
 
-    public String getName() {
-        return this.name;
-    }
 
-    public int getAmount() {
-        return this.amount;
-    }
 }

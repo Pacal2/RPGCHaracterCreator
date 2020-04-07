@@ -5,6 +5,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Character {
 
     Scanner input;
@@ -34,33 +43,6 @@ public class Character {
     private int barter;
     ArrayList<Item> equipment;
     private int currency;
-
-    public Character() {
-        this.input = new Scanner(System.in);
-        this.strength = 1;
-        this.dexterity = 1;
-        this.endurance = 1;
-        this.intelligence = 1;
-        this.charisma = 1;
-        this.perception = 1;
-        this.carry = 20 + this.strength * 10;
-        this.health = 10 + this.endurance * 5;
-        this.evasion = 10 + this.dexterity * 2;
-        this.melee = 10;
-        this.marksmanship = 10;
-        this.athletics = 10;
-        this.medicine = 10;
-        this.repair = 10;
-        this.science = 10;
-        this.vehicles = 10;
-        this.lockpick = 10;
-        this.sneak = 10;
-        this.survival = 10;
-        this.speech = 10;
-        this.barter = 10;
-        this.equipment = new ArrayList();
-        this.currency = 20;
-    }
 
     public void chooseRace() {
         do {
@@ -98,10 +80,6 @@ public class Character {
         } while(!this.race.equals("Człowiek") && !this.race.equals("Mutant") && !this.race.equals("Android") && !this.race.equals("Robal"));
 
         System.out.println("Wybrałeś rasę " + this.race + ".");
-    }
-
-    public String getRace() {
-        return this.race;
     }
 
     public void chooseClass() {
@@ -166,10 +144,6 @@ public class Character {
         } while(!this.profession.equals("Pięść") && !this.profession.equals("Oczko") && !this.profession.equals("Mózg") && !this.profession.equals("Rączka") && !this.profession.equals("Cień") && !this.profession.equals("Buźka"));
 
         System.out.println("Wybrałeś klasę " + this.profession + ".");
-    }
-
-    public String getProfession() {
-        return this.profession;
     }
 
     private int[] addPoints(int attribute, int maxAttribute, int pointsLeft) {
@@ -467,15 +441,11 @@ public class Character {
         System.out.println("Monety: " + this.currency);
     }
 
-    public void setName() {
+    public void insertName() {
         System.out.println("Jakie jest imię twojej postaci: ");
         String nameChoice = this.input.nextLine();
         this.name = nameChoice;
         System.out.println("Twoja postać nazywa się " + this.name);
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public void createCharacter() {
@@ -484,7 +454,7 @@ public class Character {
         this.distributeStatisticsPoints();
         this.distributeSkillPoints();
         this.chooseAdditionalEquipment();
-        this.setName();
+        this.insertName();
         System.out.println("Ukończono tworzenie postaci.");
         System.out.println("*****************************************");
     }
