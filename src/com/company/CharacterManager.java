@@ -28,20 +28,19 @@ public class CharacterManager {
                     break;
                 case 2:
                     System.out.println("Lista postaci: ");
-                    Iterator var2 = this.characters.iterator();
 
-                    while(var2.hasNext()) {
-                        Character charactersToList = (Character)var2.next();
+
+                    for (Character charactersToList : characters) {
                         System.out.println(charactersToList.getName());
+
                     }
 
                     System.out.println("Czyje statystyki chcesz zobaczyć: ");
+
                     boolean found = false;
                     String characterChoice = this.input.nextLine();
-                    Iterator var4 = this.characters.iterator();
 
-                    while(var4.hasNext()) {
-                        Character charactersToList = (Character)var4.next();
+                    for (Character charactersToList : characters) {
                         if (charactersToList.getName().equals(characterChoice)) {
                             charactersToList.showCharacterInfo();
                             found = true;

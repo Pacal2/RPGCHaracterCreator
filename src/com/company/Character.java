@@ -1,22 +1,19 @@
 package com.company;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Character {
 
     Scanner input;
+
+
+
     private String name;
     private String race;
     private String profession;
@@ -44,15 +41,54 @@ public class Character {
     ArrayList<Item> equipment;
     private int currency;
 
-    public void chooseRace() {
+    public Character() {
+        this.input = new Scanner(System.in);
+        this.strength = 1;
+        this.dexterity = 1;
+        this.endurance = 1;
+        this.intelligence = 1;
+        this.charisma = 1;
+        this.perception = 1;
+        this.carry = 20 + this.strength * 10;
+        this.health = 10 + this.endurance * 5;
+        this.evasion = 10 + this.dexterity * 2 ;
+        this.melee = 10;
+        this.marksmanship = 10;
+        this.athletics = 10;
+        this.medicine = 10;
+        this.repair = 10;
+        this.science = 10;
+        this.vehicles = 10;
+        this.lockpick = 10;
+        this.sneak = 10;
+        this.survival = 10;
+        this.speech = 10;
+        this.barter = 10;
+        this.equipment = new ArrayList();
+        this.currency = 20;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    private void chooseRace() {
         do {
             System.out.println(
                     "*****************************************" +
-                    "\nWybierz rasę. Wybór rasy daje jeden punkt dla danego atrybutu." +
-                    "\nCzłowiek - najbardziej dominująca rasa pustkowii jak, oryginalnie jedyni inteligentni mieszkańcy ziemii (+ do charyzmy)" +
-                    "\nMutant - ewoluowali od ludzi w trakcie wielkiej wojny. Większość z nich zmarła w trakcie przemiany, lecz najsilniejsi przetrwali (+ do siły)" +
-                    "\nAndroid - konstrukty stworzone do walki z obcymi najeźdźcami w trakcie wielkiej wojny przez ludzi. Wkrótce jednak zyskali świadomość i się przeciwko nim odwrócili (+ do intelektu)" +
-                    "\nRobal - istoty, które przybyły wraz z obcymi, nikt nie wie czy to jedna ze zniewolonych przez nich ras czy zostali przez nich stworzeni (+ do wytrzymałości)"
+                            "\nWybierz rasę. Wybór rasy daje jeden punkt dla danego atrybutu." +
+                            "\nCzłowiek - najbardziej dominująca rasa pustkowii jak, oryginalnie jedyni inteligentni mieszkańcy ziemii (+ do charyzmy)" +
+                            "\nMutant - ewoluowali od ludzi w trakcie wielkiej wojny. Większość z nich zmarła w trakcie przemiany, lecz najsilniejsi przetrwali (+ do siły)" +
+                            "\nAndroid - konstrukty stworzone do walki z obcymi najeźdźcami w trakcie wielkiej wojny przez ludzi. Wkrótce jednak zyskali świadomość i się przeciwko nim odwrócili (+ do intelektu)" +
+                            "\nRobal - istoty, które przybyły wraz z obcymi, nikt nie wie czy to jedna ze zniewolonych przez nich ras czy zostali przez nich stworzeni (+ do wytrzymałości)"
             );
             String raceChoice = this.input.nextLine().toLowerCase();
             this.race = "";
@@ -82,16 +118,16 @@ public class Character {
         System.out.println("Wybrałeś rasę " + this.race + ".");
     }
 
-    public void chooseClass() {
+    private void chooseClass() {
         do {
             System.out.println(
                     "*****************************************" +
-                    "\nWybierz klasę. Wybór klasy daje dodatkowe 10 punktów do dwóch umiejętności oraz ustala początkowy ekwipunek." +
-                    "\nPięść - wojownicy, bandyci, dzikusy. Wszyscy polecający na sile swoich mięśni ( + do sprawności i walki wręcz, ekwipunek: włócznia i ciężka zbroja)" +
-                    "\nOczko - tropiciele, strzelcy i gangsterzy. Wprawieni w broni dystansowej i znajdowaniu poszlak. (+ do broni i przetrwania, ekwipunek: strzelba i lekka zbroja" +
-                    "\nMózg - naukowcy i lekarze. Polegający na sile swojego umysły (+ do medycyny i nauki, ekwipunek: lekarstwa i książka z przed-wojenną wiedzą)" +
-                    "\nRączka - inżynierzy i mechanicy. Operujący praktycznymi umiejętnościami (+ do naprawy i pojazdów, ekwipunek: sprzęt do napraw, motor)Cień - złodzieje i szpiedzy. Wolący pozostać w cieniu (+ do skradania i włamywania się, ekwipunek, wytrychy i sztylet)." +
-                    "\nBużka - kupcy i dyplomaci. Ludzie polegający na retoryce (+ do mowy i handlu, ekwipunek: 30 monet i pistolet)"
+                            "\nWybierz klasę. Wybór klasy daje dodatkowe 10 punktów do dwóch umiejętności oraz ustala początkowy ekwipunek." +
+                            "\nPięść - wojownicy, bandyci, dzikusy. Wszyscy polecający na sile swoich mięśni ( + do sprawności i walki wręcz, ekwipunek: włócznia i ciężka zbroja)" +
+                            "\nOczko - tropiciele, strzelcy i gangsterzy. Wprawieni w broni dystansowej i znajdowaniu poszlak. (+ do broni i przetrwania, ekwipunek: strzelba i lekka zbroja" +
+                            "\nMózg - naukowcy i lekarze. Polegający na sile swojego umysły (+ do medycyny i nauki, ekwipunek: lekarstwa i książka z przed-wojenną wiedzą)" +
+                            "\nRączka - inżynierzy i mechanicy. Operujący praktycznymi umiejętnościami (+ do naprawy i pojazdów, ekwipunek: sprzęt do napraw, motor)Cień - złodzieje i szpiedzy. Wolący pozostać w cieniu (+ do skradania i włamywania się, ekwipunek, wytrychy i sztylet)." +
+                            "\nBużka - kupcy i dyplomaci. Ludzie polegający na retoryce (+ do mowy i handlu, ekwipunek: 30 monet i pistolet)"
             );
             String classChoice = this.input.nextLine().toLowerCase();
             this.profession = "";
@@ -176,17 +212,17 @@ public class Character {
         do {
             System.out.println(
                     "*****************************************" +
-                    "\nPrzydziel punkty do cech, masz do rozdania " + pointsLeft + " punktów. Maksymalnie możesz podnieść atrybut o " + maxAddStatistic + " punkty. Którą cechę chcesz pdwyższyć:" +
-                    "\nSiła: " + this.strength + "" +
-                    "\nKondycja: " + this.endurance + "" +
-                    "\nZręczność: " + this.dexterity + "" +
-                    "\nInteligencja: " + this.intelligence + "" +
-                    "\nPercepcja: " + this.perception + "" +
-                    "\nCharyzma: " + this.charisma);
+                            "\nPrzydziel punkty do cech, masz do rozdania " + pointsLeft + " punktów. Maksymalnie możesz podnieść atrybut o " + maxAddStatistic + " punkty. Którą cechę chcesz pdwyższyć:" +
+                            "\nSiła: " + this.strength + "" +
+                            "\nKondycja: " + this.endurance + "" +
+                            "\nZręczność: " + this.dexterity + "" +
+                            "\nInteligencja: " + this.intelligence + "" +
+                            "\nPercepcja: " + this.perception + "" +
+                            "\nCharyzma: " + this.charisma);
             String attributeChoice = this.input.nextLine().toLowerCase();
             int[] temp;
             switch(attributeChoice) {
-                case "siłą":
+                case "siła":
                     temp = this.addPoints(this.strength, maxStrength, pointsLeft);
                     this.strength = temp[0];
                     pointsLeft = temp[1];
@@ -220,6 +256,10 @@ public class Character {
                     System.out.println("Nie ma takiej cechy do wyboru:");
             }
         } while(pointsLeft > 0);
+
+        this.carry = 20 + this.strength * 10;
+        this.health = 10 + this.endurance * 5;
+        this.evasion = 10 + this.dexterity * 2;
 
         System.out.println("Wszystkie punkty zostały rozdane");
     }
@@ -259,7 +299,7 @@ public class Character {
                             "\nPojazdy: " + this.vehicles + "" +
                             "\nSpryt: " +
                             "\nWłamywanie się: " + this.lockpick + "" +
-                            "\nSkradanie: " + this.sneak + "" +
+                            "\nSkradanie się: " + this.sneak + "" +
                             "\nPrzetrwanie: " + this.survival + "" +
                             "\nRetoryka: " +
                             "\nHandel: " + this.barter + "" +
@@ -338,37 +378,35 @@ public class Character {
     public void showSkills() {
         System.out.println(
                 "Twoje umiejętności:" +
-                "\nFizyczne:" +
-                "\nWalka wręcz: " + this.melee + "" +
-                "\nStrzelectwo: " + this.marksmanship + "" +
-                "\nAtletyka: " + this.athletics + "" +
-                "\nWiedza:\nMedycyna: " + this.medicine + "" +
-                "\nNaprawa: " + this.repair + "" +
-                "\nNauka: " + this.science + "" +
-                "\nPojazdy: " + this.vehicles + "" +
-                "\nSpryt: " +
-                "\nWłamywanie się: " + this.lockpick + "" +
-                "\nSkradanie: " + this.sneak + "" +
-                "\nPrzetrwanie: " + this.survival + "" +
-                "\nRetoryka: " +
-                "\nHandel: " + this.barter + "" +
-                "\nMowa: " + this.speech);
+                        "\nFizyczne:" +
+                        "\nWalka wręcz: " + this.melee + "" +
+                        "\nStrzelectwo: " + this.marksmanship + "" +
+                        "\nAtletyka: " + this.athletics + "" +
+                        "\nWiedza:\nMedycyna: " + this.medicine + "" +
+                        "\nNaprawa: " + this.repair + "" +
+                        "\nNauka: " + this.science + "" +
+                        "\nPojazdy: " + this.vehicles + "" +
+                        "\nSpryt: " +
+                        "\nWłamywanie się: " + this.lockpick + "" +
+                        "\nSkradanie: " + this.sneak + "" +
+                        "\nPrzetrwanie: " + this.survival + "" +
+                        "\nRetoryka: " +
+                        "\nHandel: " + this.barter + "" +
+                        "\nMowa: " + this.speech);
     }
 
     public void showDerivedStatistics() {
         System.out.println(
                 "Atrybuty:" +
-                "\nPunkty życia: " + this.health + "" +
-                "\nObrona: " + this.evasion + "" +
-                "\nUdźwig: " + this.carry);
+                        "\nPunkty życia: " + this.health + "" +
+                        "\nObrona: " + this.evasion + "" +
+                        "\nUdźwig: " + this.carry);
     }
 
-    private void findItemAndAdd(String itemName, int amount) {
+    public void findItemAndAdd(String itemName, int amount) {
         boolean found = false;
-        Iterator var4 = this.equipment.iterator();
 
-        while(var4.hasNext()) {
-            Item equipmentToList = (Item)var4.next();
+        for(Item equipmentToList : equipment) {
             if (equipmentToList.getName().equals(itemName)) {
                 equipmentToList.addAmount(amount);
                 found = true;
@@ -378,6 +416,7 @@ public class Character {
         if (!found) {
             this.equipment.add(new Item(itemName, amount));
         }
+
 
     }
 
@@ -425,23 +464,21 @@ public class Character {
         } while(!done);
 
         System.out.println("Dodano przedmiot do ekwipunku.");
+        this.input.nextLine();
     }
 
     public void showEquipment() {
         System.out.println("Ekwipunek: ");
-        Iterator var1 = this.equipment.iterator();
-
-        while(var1.hasNext()) {
-            Item equipmentToList = (Item)var1.next();
-            PrintStream var10000 = System.out;
-            String var10001 = equipmentToList.getName();
-            var10000.println(var10001 + ", Ilość: " + equipmentToList.getAmount());
+        for(Item equipmentToList : equipment) {
+            System.out.println(equipmentToList.getName() + ", Amount: " + equipmentToList.getAmount());
         }
 
+
         System.out.println("Monety: " + this.currency);
+
     }
 
-    public void insertName() {
+    private void pickName() {
         System.out.println("Jakie jest imię twojej postaci: ");
         String nameChoice = this.input.nextLine();
         this.name = nameChoice;
@@ -454,7 +491,7 @@ public class Character {
         this.distributeStatisticsPoints();
         this.distributeSkillPoints();
         this.chooseAdditionalEquipment();
-        this.insertName();
+        this.pickName();
         System.out.println("Ukończono tworzenie postaci.");
         System.out.println("*****************************************");
     }
