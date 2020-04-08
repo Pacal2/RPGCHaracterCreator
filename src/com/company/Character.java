@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,9 +9,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Character {
+public class Character implements Serializable {
 
-    Scanner input;
+    transient Scanner input;
 
 
 
@@ -269,8 +270,8 @@ public class Character {
     }
 
     private void distributeSkillPoints() {
-        int pointsLeft = 100;
-        int maxAddStatistic = 80;
+        int pointsLeft = 200;
+        int maxAddStatistic = 40;
         int maxMelee = this.melee + maxAddStatistic;
         int maxMarksmanship = this.marksmanship + maxAddStatistic;
         int maxAthletics = this.athletics + maxAddStatistic;

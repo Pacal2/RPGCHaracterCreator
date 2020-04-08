@@ -1,10 +1,11 @@
 package com.company;
 
 
+import java.io.Serializable;
 
-public class Item {
-    String name;
-    int amount;
+public class Item implements Serializable{
+    private String name;
+    private int amount;
 
     public String getName() {
         return name;
